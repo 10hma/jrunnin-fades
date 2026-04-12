@@ -1,4 +1,4 @@
-export default function JRunninFadesDemo() {
+export default function App() {
   const services = [
     { name: "Classic Haircut", price: "$35", time: "30 min" },
     { name: "Haircut + Beard", price: "$45", time: "45 min" },
@@ -15,18 +15,17 @@ export default function JRunninFadesDemo() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
-      {/* HERO */}
-      <section className="px-6 py-20 max-w-6xl mx-auto">
-        <h1 className="text-5xl font-bold">J Runnin Fades</h1>
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <h1 className="text-5xl font-bold">TEST BARBER SITE</h1>
         <p className="mt-4 text-gray-400">
           Clean cuts, sharp fades, and professional service in Fort Worth.
         </p>
 
         <div className="mt-6 flex gap-4">
-          <button className="bg-red-600 px-5 py-3 rounded-xl">
+          <button className="rounded-xl bg-red-600 px-5 py-3">
             Book Appointment
           </button>
-          <button className="border px-5 py-3 rounded-xl">
+          <button className="rounded-xl border px-5 py-3">
             View Services
           </button>
         </div>
@@ -37,51 +36,48 @@ export default function JRunninFadesDemo() {
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section className="px-6 py-16 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6">Services</h2>
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="mb-6 text-3xl font-bold">Services</h2>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {services.map((s) => (
-            <div key={s.name} className="border p-5 rounded-2xl">
-              <h3 className="text-lg font-semibold">{s.name}</h3>
-              <p className="text-red-400 text-2xl">{s.price}</p>
-              <p className="text-gray-400">{s.time}</p>
+          {services.map((service) => (
+            <div key={service.name} className="rounded-2xl border p-5">
+              <h3 className="text-lg font-semibold">{service.name}</h3>
+              <p className="text-2xl text-red-400">{service.price}</p>
+              <p className="text-gray-400">{service.time}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* GALLERY */}
-      <section className="px-6 py-16 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6">Gallery</h2>
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="mb-6 text-3xl font-bold">Gallery</h2>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {gallery.map((g) => (
-            <div key={g} className="bg-gray-800 p-10 rounded-xl">
-              {g}
+          {gallery.map((item) => (
+            <div key={item} className="rounded-xl bg-gray-800 p-10">
+              {item}
             </div>
           ))}
         </div>
       </section>
 
-      {/* BOOKING */}
-      <section className="px-6 py-16 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6">Book Appointment</h2>
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <h2 className="mb-6 text-3xl font-bold">Book Appointment</h2>
 
         <div className="grid gap-4 md:grid-cols-2">
           <input
             placeholder="Name"
-            className="p-3 bg-black border rounded-xl"
+            className="rounded-xl border bg-black p-3"
           />
           <input
             placeholder="Phone"
-            className="p-3 bg-black border rounded-xl"
+            className="rounded-xl border bg-black p-3"
           />
-          <input type="date" className="p-3 bg-black border rounded-xl" />
-          <input type="time" className="p-3 bg-black border rounded-xl" />
+          <input type="date" className="rounded-xl border bg-black p-3" />
+          <input type="time" className="rounded-xl border bg-black p-3" />
 
-          <button className="bg-red-600 p-3 rounded-xl col-span-2">
+          <button className="col-span-2 rounded-xl bg-red-600 p-3">
             Submit
           </button>
         </div>
