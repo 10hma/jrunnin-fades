@@ -16,7 +16,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <h1 className="text-5xl font-bold">TEST BARBER SITE</h1>
+        <h1 className="text-5xl font-bold">J Runnin Fades</h1>
         <p className="mt-4 text-gray-400">
           Clean cuts, sharp fades, and professional service in Fort Worth.
         </p>
