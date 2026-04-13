@@ -246,8 +246,7 @@ export default function App() {
               Work that sells the shop
             </h2>
             <p className="mt-3 max-w-2xl text-neutral-400">
-              Replace these with real haircut photos from the barber’s Instagram,
-              booking page, or your own camera.
+              Check out some of our recent work. Clean fades, sharp lineups, and modern styles done right.
             </p>
           </div>
 
