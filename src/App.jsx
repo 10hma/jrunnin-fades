@@ -1,21 +1,57 @@
+import { useState } from "react";
+
 export default function App() {
-  const bookingLink = "PASTE_THEIR_SQUIRE_BOOKING_LINK_HERE";
+  const bookingLink =
+    "https://getsquire.com/booking/book/no-cap-kutz-barbershop-fort-worth/barber/jibre-woods/services";
+
   const phone = "(817) 902-1767";
   const phoneHref = "tel:8179021767";
   const address = "5800 E Berry St #110, Fort Worth, TX 76119";
 
   const services = [
-    { name: "Classic Haircut", price: "$35", time: "30 min" },
-    { name: "Haircut + Beard", price: "$45", time: "45 min" },
-    { name: "Kids Cut", price: "$25", time: "25 min" },
-    { name: "Line Up", price: "$20", time: "15 min" },
+    {
+      name: "Adult Haircut",
+      price: "$40",
+      time: "30 mins",
+      desc: "Adult Haircut (Men & Women) A complete haircut service for men and women. Includes a precision haircut tailored to your style, straight-razor detailing, beard shaping (if needed), enhancements, and eyebrow cleanup. OG CLIENTS KEEP THEIR ORIGINAL PRICES.",
+    },
+    {
+      name: "Kids & Teen Haircut",
+      price: "$25",
+      time: "30 mins",
+      desc: "Kids & Teen Haircut (Ages 0–17) Designed for kids and teens of all ages. This service includes a clean, age-appropriate haircut with attention to comfort, patience, and detail. Perfect for first cuts, school styles, or fresh fades. OG clients keep their original pricing.",
+    },
+    {
+      name: "VIP Full Package 👑",
+      price: "$65",
+      time: "1 hr 15 mins",
+      desc: "Begin with a refreshing shampoo, followed by a precision haircut and full shave. This service includes a hot towel, facial steam, relaxing massage, deep skin facial cleansing with a black mask, and nose hair removal so you leave fully refreshed, polished, and confident.",
+    },
+    {
+      name: "Line Up / Beard Trim",
+      price: "$20",
+      time: "30 mins",
+      desc: "Clean lineup and detailed beard trim using trimmers, straight razor and scissors for sharp edges and a polished finish. Does not include a taper or haircut. OG clients keep their original pricing.",
+    },
+    {
+      name: "After Hours",
+      price: "$50",
+      time: "1 hr",
+      desc: "A cut before 8 AM or after 8 PM? No problem! After-hours haircuts are $10 added to your regular cut, resulting in: Kid Cut: $35 • Adult Cut: $50. Text to book: 817-902-1767.",
+    },
+    {
+      name: "House Calls",
+      price: "$85",
+      time: "2 hrs 30 mins",
+      desc: "Can’t make it to the shop? I’ll come to you! Serving the Fort Worth/DFW area with convenient, safe, and fresh cuts wherever you are. Drives over 30 minutes from the shop are $25 extra. Text to book: 817-902-1767.",
+    },
   ];
 
   const gallery = [
     {
       title: "Clean fades",
       image:
-        "https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=80",
     },
     {
       title: "Sharp lineups",
@@ -37,24 +73,17 @@ export default function App() {
   const features = [
     "Easy online booking",
     "Clean, professional cuts",
-    "Fast service and clear pricing",
-    "Mobile-friendly booking experience",
+    "Fort Worth barber service",
+    "Fast scheduling experience",
   ];
+
+  const [openIndex, setOpenIndex] = useState(null);
 
   function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  }
-
-  function openBooking() {
-    if (bookingLink === "PASTE_THEIR_SQUIRE_BOOKING_LINK_HERE") {
-      alert("Add the real Squire booking link at the top of App.jsx first.");
-      return;
-    }
-
-    window.open(bookingLink, "_blank", "noopener,noreferrer");
   }
 
   return (
@@ -68,7 +97,7 @@ export default function App() {
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/80" />
 
         <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
           <div className="max-w-3xl">
@@ -87,12 +116,14 @@ export default function App() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <button
-                onClick={openBooking}
+              <a
+                href={bookingLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-2xl bg-red-600 px-6 py-3 text-sm font-semibold shadow-lg shadow-red-900/30 transition hover:scale-[1.02] hover:bg-red-500"
               >
                 Book Now
-              </button>
+              </a>
 
               <button
                 onClick={() => scrollToSection("services")}
@@ -112,7 +143,10 @@ export default function App() {
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
                 <p className="text-sm text-neutral-400">Phone</p>
-                <a href={phoneHref} className="mt-1 block font-medium hover:text-red-300">
+                <a
+                  href={phoneHref}
+                  className="mt-1 block font-medium hover:text-red-300"
+                >
                   {phone}
                 </a>
               </div>
@@ -150,32 +184,53 @@ export default function App() {
             </h2>
           </div>
 
-          <button
-            onClick={openBooking}
+          <a
+            href={bookingLink}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-semibold transition hover:bg-white/5"
           >
             Book Through Squire
-          </button>
+          </a>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {services.map((service) => (
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {services.map((service, i) => (
             <div
               key={service.name}
               className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-black/20"
             >
-              <h3 className="text-lg font-semibold">{service.name}</h3>
-              <p className="mt-3 text-3xl font-bold text-red-400">
-                {service.price}
-              </p>
-              <p className="mt-1 text-sm text-neutral-400">{service.time}</p>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-semibold">{service.name}</h3>
+                  <p className="mt-1 text-sm text-neutral-400">{service.time}</p>
+                </div>
+                <div className="rounded-xl bg-white/10 px-3 py-2 text-base font-bold text-red-300">
+                  {service.price}
+                </div>
+              </div>
 
               <button
-                onClick={openBooking}
-                className="mt-5 w-full rounded-2xl bg-red-600 px-4 py-3 text-sm font-semibold transition hover:bg-red-500"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="mt-4 text-sm font-medium text-blue-300 transition hover:text-blue-200"
               >
-                Book This Service
+                {openIndex === i ? "Hide Description" : "Read Description"}
               </button>
+
+              {openIndex === i && (
+                <p className="mt-4 text-sm leading-7 text-neutral-300">
+                  {service.desc}
+                </p>
+              )}
+
+              <a
+                href={bookingLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 block w-full rounded-2xl bg-red-600 px-4 py-3 text-center text-sm font-semibold transition hover:bg-red-500"
+              >
+                Book Now
+              </a>
             </div>
           ))}
         </div>
@@ -192,7 +247,7 @@ export default function App() {
             </h2>
             <p className="mt-3 max-w-2xl text-neutral-400">
               Replace these with real haircut photos from the barber’s Instagram,
-              booking page, or phone camera.
+              booking page, or your own camera.
             </p>
           </div>
 
@@ -227,16 +282,18 @@ export default function App() {
               Ready for a fresh cut?
             </h2>
             <p className="mt-4 text-neutral-400">
-              Book online through the shop’s real booking page or call directly.
+              Book your appointment quickly through our secure online booking page.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <button
-                onClick={openBooking}
+              <a
+                href={bookingLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-2xl bg-red-600 px-6 py-3 text-sm font-semibold transition hover:bg-red-500"
               >
                 Open Booking Page
-              </button>
+              </a>
 
               <a
                 href={phoneHref}
@@ -244,11 +301,6 @@ export default function App() {
               >
                 Call {phone}
               </a>
-            </div>
-
-            <div className="mt-8 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">
-              Replace the booking link at the top of this file so every booking
-              button opens their real Squire page.
             </div>
           </div>
 
@@ -269,9 +321,9 @@ export default function App() {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm text-neutral-400">Best next upgrade</p>
+                <p className="text-sm text-neutral-400">Hours / Availability</p>
                 <p className="mt-1 text-neutral-300">
-                  Add real haircut photos and connect the live Squire link.
+                  Appointments available through online booking or by phone.
                 </p>
               </div>
             </div>
@@ -283,15 +335,26 @@ export default function App() {
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-neutral-400 md:flex-row md:items-center md:justify-between">
           <p>J Runnin Fades</p>
           <div className="flex gap-4">
-            <button onClick={() => scrollToSection("services")} className="hover:text-white">
+            <button
+              onClick={() => scrollToSection("services")}
+              className="hover:text-white"
+            >
               Services
             </button>
-            <button onClick={() => scrollToSection("gallery")} className="hover:text-white">
+            <button
+              onClick={() => scrollToSection("gallery")}
+              className="hover:text-white"
+            >
               Gallery
             </button>
-            <button onClick={openBooking} className="hover:text-white">
+            <a
+              href={bookingLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
               Book
-            </button>
+            </a>
           </div>
         </div>
       </footer>
