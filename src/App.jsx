@@ -1,4 +1,9 @@
 export default function App() {
+  const bookingLink = "PASTE_THEIR_SQUIRE_BOOKING_LINK_HERE";
+  const phone = "(817) 902-1767";
+  const phoneHref = "tel:8179021767";
+  const address = "5800 E Berry St #110, Fort Worth, TX 76119";
+
   const services = [
     { name: "Classic Haircut", price: "$35", time: "30 min" },
     { name: "Haircut + Beard", price: "$45", time: "45 min" },
@@ -7,81 +12,289 @@ export default function App() {
   ];
 
   const gallery = [
-    "Clean fades",
-    "Sharp lineups",
-    "Beard trims",
-    "Modern styles",
+    {
+      title: "Clean fades",
+      image:
+        "https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      title: "Sharp lineups",
+      image:
+        "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      title: "Beard trims",
+      image:
+        "https://images.unsplash.com/photo-1512690459411-b0fd4b7b729c?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      title: "Modern styles",
+      image:
+        "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80",
+    },
   ];
+
+  const features = [
+    "Easy online booking",
+    "Clean, professional cuts",
+    "Fast service and clear pricing",
+    "Mobile-friendly booking experience",
+  ];
+
+  function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  function openBooking() {
+    if (bookingLink === "PASTE_THEIR_SQUIRE_BOOKING_LINK_HERE") {
+      alert("Add the real Squire booking link at the top of App.jsx first.");
+      return;
+    }
+
+    window.open(bookingLink, "_blank", "noopener,noreferrer");
+  }
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <h1 className="text-5xl font-bold">J Runnin Fades</h1>
-        <p className="mt-4 text-gray-400">
-          Clean cuts, sharp fades, and professional service in Fort Worth.
-        </p>
+      <section
+        className="relative overflow-hidden border-b border-white/10"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(10,10,10,0.78), rgba(10,10,10,0.88)), url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1600&q=80")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/80" />
 
-        <div className="mt-6 flex gap-4">
-          <button className="rounded-xl bg-red-600 px-5 py-3">
-            Book Appointment
-          </button>
-          <button className="rounded-xl border px-5 py-3">
-            View Services
-          </button>
-        </div>
+        <div className="relative mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <div className="max-w-3xl">
+            <p className="inline-block rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 text-sm font-medium text-red-200">
+              Fort Worth Barber Shop
+            </p>
 
-        <div className="mt-8">
-          <p>(817) 902-1767</p>
-          <p>5800 E Berry St #110, Fort Worth, TX</p>
+            <h1 className="mt-6 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+              J Runnin Fades
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-300 sm:text-xl">
+              Clean cuts, sharp fades, and professional service in Fort Worth.
+              Modern style, smooth booking, and a shop experience your clients
+              remember.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <button
+                onClick={openBooking}
+                className="rounded-2xl bg-red-600 px-6 py-3 text-sm font-semibold shadow-lg shadow-red-900/30 transition hover:scale-[1.02] hover:bg-red-500"
+              >
+                Book Now
+              </button>
+
+              <button
+                onClick={() => scrollToSection("services")}
+                className="rounded-2xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold transition hover:bg-white/10"
+              >
+                View Services
+              </button>
+
+              <a
+                href={phoneHref}
+                className="rounded-2xl border border-white/20 bg-black/30 px-6 py-3 text-sm font-semibold transition hover:bg-white/10"
+              >
+                Call Shop
+              </a>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                <p className="text-sm text-neutral-400">Phone</p>
+                <a href={phoneHref} className="mt-1 block font-medium hover:text-red-300">
+                  {phone}
+                </a>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur sm:col-span-2">
+                <p className="text-sm text-neutral-400">Location</p>
+                <p className="mt-1 font-medium">{address}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="mb-6 text-3xl font-bold">Services</h2>
+      <section className="border-b border-white/10 bg-white/[0.03]">
+        <div className="mx-auto grid max-w-6xl gap-4 px-6 py-10 md:grid-cols-4">
+          {features.map((feature) => (
+            <div
+              key={feature}
+              className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4 text-sm text-neutral-300"
+            >
+              {feature}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="services" className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm uppercase tracking-[0.2em] text-red-300">
+              Services
+            </p>
+            <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
+              Popular cuts and pricing
+            </h2>
+          </div>
+
+          <button
+            onClick={openBooking}
+            className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-semibold transition hover:bg-white/5"
+          >
+            Book Through Squire
+          </button>
+        </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {services.map((service) => (
-            <div key={service.name} className="rounded-2xl border p-5">
+            <div
+              key={service.name}
+              className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-black/20"
+            >
               <h3 className="text-lg font-semibold">{service.name}</h3>
-              <p className="text-2xl text-red-400">{service.price}</p>
-              <p className="text-gray-400">{service.time}</p>
+              <p className="mt-3 text-3xl font-bold text-red-400">
+                {service.price}
+              </p>
+              <p className="mt-1 text-sm text-neutral-400">{service.time}</p>
+
+              <button
+                onClick={openBooking}
+                className="mt-5 w-full rounded-2xl bg-red-600 px-4 py-3 text-sm font-semibold transition hover:bg-red-500"
+              >
+                Book This Service
+              </button>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="mb-6 text-3xl font-bold">Gallery</h2>
+      <section id="gallery" className="border-y border-white/10 bg-white/[0.03]">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="mb-8">
+            <p className="text-sm uppercase tracking-[0.2em] text-red-300">
+              Gallery
+            </p>
+            <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
+              Work that sells the shop
+            </h2>
+            <p className="mt-3 max-w-2xl text-neutral-400">
+              Replace these with real haircut photos from the barber’s Instagram,
+              booking page, or phone camera.
+            </p>
+          </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {gallery.map((item) => (
-            <div key={item} className="rounded-xl bg-gray-800 p-10">
-              {item}
+          <div className="grid gap-5 md:grid-cols-2">
+            {gallery.map((item) => (
+              <div
+                key={item.title}
+                className="group relative overflow-hidden rounded-3xl border border-white/10"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <p className="text-xl font-semibold">{item.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-8">
+            <p className="text-sm uppercase tracking-[0.2em] text-red-300">
+              Booking
+            </p>
+            <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
+              Ready for a fresh cut?
+            </h2>
+            <p className="mt-4 text-neutral-400">
+              Book online through the shop’s real booking page or call directly.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <button
+                onClick={openBooking}
+                className="rounded-2xl bg-red-600 px-6 py-3 text-sm font-semibold transition hover:bg-red-500"
+              >
+                Open Booking Page
+              </button>
+
+              <a
+                href={phoneHref}
+                className="rounded-2xl border border-white/15 px-6 py-3 text-sm font-semibold transition hover:bg-white/5"
+              >
+                Call {phone}
+              </a>
             </div>
-          ))}
+
+            <div className="mt-8 rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-100">
+              Replace the booking link at the top of this file so every booking
+              button opens their real Squire page.
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-neutral-900 p-6">
+            <h3 className="text-2xl font-bold">Shop info</h3>
+
+            <div className="mt-6 space-y-4">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm text-neutral-400">Address</p>
+                <p className="mt-1">{address}</p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm text-neutral-400">Phone</p>
+                <a href={phoneHref} className="mt-1 block hover:text-red-300">
+                  {phone}
+                </a>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm text-neutral-400">Best next upgrade</p>
+                <p className="mt-1 text-neutral-300">
+                  Add real haircut photos and connect the live Squire link.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="mb-6 text-3xl font-bold">Book Appointment</h2>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <input
-            placeholder="Name"
-            className="rounded-xl border bg-black p-3"
-          />
-          <input
-            placeholder="Phone"
-            className="rounded-xl border bg-black p-3"
-          />
-          <input type="date" className="rounded-xl border bg-black p-3" />
-          <input type="time" className="rounded-xl border bg-black p-3" />
-
-          <button className="col-span-2 rounded-xl bg-red-600 p-3">
-            Submit
-          </button>
+      <footer className="border-t border-white/10 bg-black/30">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-neutral-400 md:flex-row md:items-center md:justify-between">
+          <p>J Runnin Fades</p>
+          <div className="flex gap-4">
+            <button onClick={() => scrollToSection("services")} className="hover:text-white">
+              Services
+            </button>
+            <button onClick={() => scrollToSection("gallery")} className="hover:text-white">
+              Gallery
+            </button>
+            <button onClick={openBooking} className="hover:text-white">
+              Book
+            </button>
+          </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
