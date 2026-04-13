@@ -61,7 +61,7 @@ export default function App() {
     {
       title: "Beard trims",
       image:
-        "https://images.unsplash.com/photo-1512690459411-b0fd4b7b729c?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1200&q=80",
     },
     {
       title: "Modern styles",
